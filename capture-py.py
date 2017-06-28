@@ -12,7 +12,7 @@ def copyFile(srcfile): #copies and renames files
         try:
             shutil.copyfile(srcfile,dstfile)
             print(srcfile + ' --> ' + dstfile)
-            with open('cap-py.txt', 'a') as f:     #log files captured to cap-py.txt
+            with open('capture-py.log', 'a') as f:     #log files captured to capture-py.log
                 f.write(datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S') + ',' + srcfile + ',' + dstfile + '\n')
         except (OSError, IOError):
             pass
@@ -27,7 +27,7 @@ class FileEventHandler(FileSystemEventHandler): #Fires on file event
         copyFile(srcfile)
 
 if len(sys.argv) != 3: #check if all arguments are provded or exit
-    print('cap-py.py <watch-path> <archive-path>')
+    print('capture-py.py <capture-directory> <save-directory>')
     sys.exit()
     
 watchPath = sys.argv[1] #files to watch
